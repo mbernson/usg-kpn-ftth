@@ -1,9 +1,9 @@
 # Ubiquiti USG with KPN FTTH, IPTV and IPv6
-This repo contains the files you need to succesfully configure the USG with KPN FTTH with IPTV and IPv6 enabled.
+This repo contains the files you need to succesfully configure the USG with KPN FTTH with IPTV and IPv6 enabled with IPSEC VPN.
 
 Klik [hier](https://coolhva.github.io/usg-kpn-ftth/posts/unifi-security-gateway-kpn-ftth-iptv-ipv6/) voor een Nederlandse handleiding!
 
-Please **[download a zip file](https://github.com/coolhva/usg-kpn-ftth/archive/master.zip)** with all the files and do not copy and paste the contents because of the UNIX file structure!
+Please **[download a zip file](https://github.com/coolhva/usg-kpn-ftth/archive/vpn.zip)** with all the files and do not copy and paste the contents because of the UNIX file structure!
 
 1. Place **config.gateway.json** at the unifi controller (*sites/default*) via SCP
 
@@ -26,8 +26,14 @@ Please **[download a zip file](https://github.com/coolhva/usg-kpn-ftth/archive/m
 
    After each firmware upgrade the routes file, used by the dhcp client at the exit hook (for the IPTV routes), is removed. To overcome this, after 2 minutes the USG will execute this script which will create the routes file, renews the DHCP lease, restart the IGMP Proxy and remove the task from the taskscheduler.
 
-9. The lan network (and portfowarding if needed) needs to be configured in the Unifi controller
-9. Go to the USG in devices in the controller and force provisioning
+8. Place **setvpn.sh** in */config/scripts/post-config.d/* via SCP
+9. Execute `chmod +x /config/scripts/post-config.d/setvpn.sh` on the USG
+
+   After each firmware upgrade the custom vpn confguration is removed. To overcome this, after 3 minutes the USG will execute this script which will fix the VPN configuration and remove the task from the taskscheduler.
+
+10. The lan network (and portfowarding if needed) needs to be configured in the Unifi controller
+11. The IPSEC VPN configuration needs to be configured in the Unifi controller
+12. Go to the USG in devices in the controller and force provisioning
 
 After provisioning please reboot the USG. After two minutes IPv6 will be enabled. This can be checked by executing `show interfaces` on the USG.
 

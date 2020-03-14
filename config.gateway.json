@@ -13,6 +13,12 @@
                         "path": "/config/scripts/post-config.d/setroutes.sh"
                     },
                     "interval": "2m"
+                },
+                "postprovisionvpn": {
+                	"executable": {
+                        "path": "/config/scripts/post-config.d/setvpn.sh"
+                    },
+                    "interval": "3m"
                 }
             }
         },
