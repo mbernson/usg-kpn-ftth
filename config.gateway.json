@@ -155,8 +155,8 @@
                         "managed-flag": "true",
                         "max-interval": "600",
                         "name-server": [
-                        	"2606:4700:4700::1111",
-                        	"2606:4700:4700::1001"
+                        	"2a02:a47f:e000::53",
+                        	"2a02:a47f:e000::54"
                         ],
                         "other-config-flag": "false",
                         "prefix": {
@@ -166,7 +166,7 @@
                                 "valid-lifetime": "2592000"
                             }
                         },
-                        "radvd-options": "RDNSS 2606:4700:4700::1111 2606:4700:4700::1001 {};",
+                        "radvd-options": "RDNSS 2a02:a47f:e000::53 2a02:a47f:e000::54 {};",
                         "reachable-time": "0",
                         "retrans-timer": "0",
                         "send-advert": "true"
